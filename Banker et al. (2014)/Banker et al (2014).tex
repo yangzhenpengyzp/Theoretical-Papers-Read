@@ -1,0 +1,204 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{array} % 用于定义新列类型
+\renewcommand{\bibsection}{}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\title{Derivations for \textit{"Demand Uncertainty and Cost Behavior"}}
+\author{Zhenpeng YANG}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\section*{Brief Intro}
+This file is about the detailed derivations for "Demand Uncertainty and Cost Behavior" of \cite{banker2014demand}.\par
+The intuition is that risk-neutral firms tend to maintain more relatively fixed capacity resources with the increase of demand uncertainty because the congestion costs at higher demand realizations overweight the expenses at lower demand realizations.
+
+\section*{Steps to Get the Translog Production Function}
+The following is the steps to get the translog production function from CES (Constant Elasticity of Substitution) production function. The key method is Taylor expansion.
+\subsection*{\textit{CES production function}}
+The CES (Constant Elasticity of Substitution) production function is given by:
+\[
+Q = A \left( \alpha K^\rho + (1 - \alpha) L^\rho \right)^{\frac{1}{\rho}},
+\]
+where:
+\begin{itemize}
+    \item \( Q \) is the output.
+    \item \( A \) is the total factor productivity (TFP).
+    \item \( K \) and \( L \) are the capital and labor inputs, respectively.
+    \item \( \alpha \) is the share parameter for capital (\( 0 < \alpha < 1 \)).
+    \item \( \rho \) is the substitution parameter, related to the elasticity of substitution \( \sigma \) by \( \rho = 1 - \frac{1}{\sigma} \).
+\end{itemize}
+
+\subsection*{\textit{Logarithmic transformation of the CES function}}
+Taking the natural logarithm of the CES production function:
+\[
+\ln Q = \ln A + \frac{1}{\rho} \ln \left( \alpha K^\rho + (1 - \alpha) L^\rho \right).
+\]
+
+\subsection*{\textit{Second-Order Taylor expansion of the CES function}}
+To derive the Translog production function, we perform a second-order Taylor expansion of \( \ln Q \) around \( \rho = 0 \). Define:
+\[
+f(\rho) = \frac{1}{\rho} \ln \left( \alpha K^\rho + (1 - \alpha) L^\rho \right).
+\]
+We expand \( f(\rho) \) around \( \rho = 0 \).\par
+\[
+\lim_{\rho \to 0}f(\rho) = \lim_{\rho \to 0} \frac{1}{\rho}  \ln \left( \alpha K^{\rho} + (1 - \alpha) L^{\rho} \right) =  \alpha \ln{K} + (1 - \alpha) \ln{L} 
+\]
+The first derivative of \( f(\rho) \) is:
+\[
+f'(\rho) = \frac{d}{d\rho} \left( \frac{1}{\rho} \ln \left( \alpha K^\rho + (1 - \alpha) L^\rho \right) \right).
+\]
+Evaluating \( f'(\rho) \) at \( \rho = 0 \) is complex, and a simple way is to expand $\ln \left( \alpha K^\rho + (1 - \alpha) L^\rho \right) $ directly via Taylor series of $\ln\left( 1+x \right)$ and $e^{x}$
+\[
+\ln Q = \ln \left(A K^{\alpha } L^{1-\alpha }\right)-\frac{1}{2} \rho  \left((\alpha -1) \alpha  (\ln K-\ln L)^2\right)+O\left(\rho ^2\right)
+\]
+\[
+\ln Q=\ln{A} + \alpha \ln{K}+(1-\alpha) \ln{L} + \frac{1}{2}\rho \alpha (1-\alpha) (\ln K)^2+ \frac{1}{2}\rho \alpha (1-\alpha) (\ln L)^2 - \rho \alpha (1-\alpha)\ln K \ln L
+\]
+This is the original version of translog production function and we can transform it into the parameters based version:
+\[
+\ln Q = \beta_0 + \beta_K \ln K + \beta_L \ln L + \frac{1}{2} \beta_{KK} (\ln K)^2 + \frac{1}{2} \beta_{LL} (\ln L)^2 + \beta_{KL} \ln K \ln L
+\]
+Here, the prerequisite knowledge about the translog production function is ready and the following comes the formal derivation.
+
+\section*{Detailed Derivations}
+
+\begin{equation}
+    \beta=\frac{\partial \ln C(q)}{\partial \ln q}=\frac{\partial C(q) / C(q)}{\partial q / q}
+\label{eq: cost response to sales change}
+\end{equation}
+
+
+\begin{equation}
+    \mathrm{ln}f(x,z)=\alpha_0+\alpha_1\mathrm{ln}x+\alpha_2\mathrm{ln}z+\frac{\beta_{11}}{2}(\mathrm{ln}x)^2+\beta_{12}\mathrm{ln}x\mathrm{ln}z+\frac{\beta_{22}}{2}(\mathrm{ln}z)^2
+\label{eq: translog production function}
+\end{equation}
+In the short run, the consumption of the variable input z is determined by the production
+volume $q$. We denote by $z^*(q|x)$ the quantity of input $z$ required to generate volume $q$ for a given level of the fixed input $x$, so that:
+\begin{equation}
+    z^*(q|\:x)=z:f(x,z)=q
+\label{eq: z and q}
+\end{equation}
+Conditional on the fixed input $x$, the short-run cost function $C(q|x)$ is:
+\begin{equation}
+    C(q|\:x)=p_xx+p_zz^*(q|\:x)
+\label{eq: conditional short-run cost function}
+\end{equation}
+They treat the distribution of quantity demanded $q^d$ as exogenously given, and assume that it is always optimal for the firm to fully meet the demand. They also assume away inventories. Thus, production volume $q$ is always equal to the quantity demanded $q^d.$ 
+\begin{equation}
+    q^d=q_0+\sigma\varepsilon
+\label{eq: volume demanded}
+\end{equation}
+Because the fixed input $x$ is chosen prior to observing actual demand $q^d$, the optimal choice of $x$ aims to minimize expected total costs given the distribution of demand:
+\begin{equation}
+    \min_x\Big\{p_xx+E\Big(p_zz^*(q_0+\sigma\varepsilon|\:x)\Big)\Big\}
+\label{eq: objective}
+\end{equation}
+The first-order condition is:
+\begin{equation}
+    p_x=-p_zE\left[\frac{\partial z^*(q_0+\sigma\varepsilon|x)}{\partial x}\right]
+\label{eq: first-order condition}
+\end{equation}
+Next, we examine how an increase in demand uncertainty $\sigma$ affects the optimal choice of the fixed input $x$. In turn, this will determine the relationship between demand uncertainty and cost rigidity, since higher $x$ corresponds to a more rigid short-run cost structure with higher fixed and lower variable costs.\par
+The production function $f(x,z)$ has the standard properties: $f_x>0,f_z>0$, positive marginal product; $f_{xx}<0,f_{zz}<0$, diminishing marginal product; $f_xz>0$, complementarity between the two inputs. $f_x,f_z$ and $f_{xx},f_{xz},f_{zz}$ denote first and second partial derivatives of $f(x,z)$, respectively.\par
+Through differentiation of implicit function (\ref{eq: z and q}), the first partial derivatives of $z^*(q|x)$ are:
+\begin{equation}
+    \frac{\partial z^*(q|x)}{\partial q}=\frac{1}{f_z\left(z^*(q|x)\right)}>0
+\label{first partial z on q}
+\end{equation}
+
+\begin{equation}
+    \frac{\partial z^*(q|x)}{\partial x}=-\frac{f_x\left(z^*(q|x)\right)}{f_z\left(z^*(q|x)\right)}<0
+\label{first partial z on x}
+\end{equation}
+
+The second partial derivatives of $z^*(q|x)$, obtained by differentiating (\ref{first partial z on q}) and (\ref{first partial z on x}), are:
+\begin{equation}
+    \frac{\partial^2z^*(q|x)}{\partial q^2}=-\frac{f_{zz}}{f_z^3}>0
+\end{equation}
+\begin{equation}
+    \frac{\partial^2z^*(q|x)}{\partial q\partial x}=\frac{f_xf_{zz}-f_{xz}f_z}{f_z^3}<0
+\end{equation}
+\begin{equation}
+    \frac{\partial^2z^*(q|x)}{\partial x^2}=-\frac{f_{xx}f_z-2f_{xz}f_x+f_{zz}f_x\frac{f_x}{f_z}}{f_z^2}>0
+    \label{xx}
+\end{equation}
+From equations (\ref{eq: conditional short-run cost function}) and (\ref{first partial z on q}), the marginal cost is:
+\begin{equation}
+    mc(q|x)\equiv\frac{\partial C(q|x)}{\partial q}=p_z\frac{\partial z^*(q|x)}{\partial q}>0
+    \label{mc}
+\end{equation}
+
+\subsection*{\textit{Properties of cost function}}
+\subsubsection*{Lemma 1: Conditional on $q$,the marginal cost $mc(q|x)$ is decreasing in $x.$}
+\textbf{\textit{Proof:}}
+From (\ref{mc}), the derivative $\partial mc(q|x)/\partial x$ is equal to:
+$$\frac{\partial mc(q|x)}{\partial x}=p_z\frac{\partial^2z^*(q|x)}{\partial q\partial x},$$
+where: $p_z>0$, and $\frac{\partial^2z^*(q|x)}{\partial q\partial x}<0$. Therefore, $\partial mc(q|x)/\partial x<0$, i.e., the marginal cost is
+decreasing in $x$.
+
+\subsubsection*{Lemma 2: Conditional on $x$, the marginal cost $mc(q|x)$ is increasing in $q$, i.e., the cost function $C(q|x)$ is convex in $q.$}
+\textbf{\textit{Proof:}}
+$$\frac{\partial mc(q|x)}{\partial q}=p_z\frac{\partial^2z^*(q|x)}{\partial q^2}\:,$$
+where $p_z>0$, and $\frac{\partial^2z^*(q|x)}{\partial q^2}>0$. Therefore, $\partial mc(q|x)/\partial q$ is positive, i.e., the marginal cost is increasing in $q.$
+Because $\partial mc(q|x)/\partial q$ corresponds to the second derivative of the total cost function $C(q|x)$ with respect to $q$, $\partial mc(q|x)/\partial q>0$ implies that $C(q)$ is convex in $q$. 
+\subsection*{\textit{Derivations for the relationship between $\sigma$ and x}}
+We formulate the sufficient conditions in terms of the output elasticities $\eta_x\equiv\partial$ln$f(x,z)/\partial$ln$x$ and $\eta_{z}\equiv\partial\mathbf{ln}f(x,z)/\partial\mathbf{ln}z.$
+
+\subsubsection*{Proposition 1: Demand Uncertainty and the Optimal Choice of the Fixed Input:}
+If the production function (\ref{eq: translog production function}) satisfies the following conditions for output elasticities everywhere in the relevant range:
+\begin{enumerate}[label=(\arabic*)]
+    \item $0<\eta_x<1,0<\eta_z<1$;
+    \item $\eta_x$, $\eta_z$ are non-increasing in x and z, respectively, holding the other input constant (i.e., in the translog production function,$\beta_{11}\leq0$, $\beta_{22}\leq0$); and 
+    \item $\eta_x$ is non-decreasing in $z$ and $\eta_z$ is non-decreasing in $x$ (i.e., $\beta_{12}\geq0)$, then the optimal level of the fixed input $x$ is increasing in demand uncertainty $\sigma.$
+\end{enumerate}
+\textbf{\textit{Proof:}} Actually, the core thought is to prove that $\frac{\partial z^*(q|x)}{\partial x}$ is concave with respect to q. Because q is a random variable with variance as $\sigma$, along with the concavity of $\frac{\partial z^*(q|x)}{\partial x}$, the first-order condition (\ref{eq: first-order condition}) will tell us the final result. Now, let us start!\par
+
+\begin{equation}
+\frac{\partial^3z^*(q|x)}{\partial x\partial q^2}=\frac{3f_zf_{xz}f_{zz}-3f_xf_{zz}^2+f_xf_zf_{zzz}-f_z^2f_{xzz}}{f_z^5}.
+\label{xxx}
+\end{equation}
+The denominator $f_z^5$ is positive, thus the sign of the formula is determined by the numerator. The partial derivatives of $f(x,z)$ is as follows:
+\[
+\begin{cases}
+f_x = \dfrac{f}{x} \eta_x, \\
+f_z = \dfrac{f}{z} \eta_z, \\ 
+f_{xz} = \dfrac{f}{xz} (\eta_x \eta_z + \beta_{12}), \\
+f_{zz} = \dfrac{f}{z^2} (\eta_z^2 + \beta_{22} - \eta_z), \\
+f_{xzz} = \dfrac{f}{x z^2} (\eta_x \eta_z^2 + 2 \beta_{12} \eta_z + \beta_{22} \eta_x - \eta_x \eta_z - \beta_{12}),\\
+f_{zzz}=\frac{f}{z^{3}}(\eta_{z}^{3}-3\eta_{z}^{2}+3\beta_{22}\eta_{z}+2\eta_{z}-3\beta_{22})
+\end{cases}
+\]
+where
+\[
+\eta_x = \alpha_1 + \beta_{11} \ln x + \beta_{12} \ln z, \quad \eta_z = \alpha_2 + \beta_{12} \ln x + \beta_{22} \ln z.
+\]
+Thus, the numerator of equation (\ref{xxx}) is transformed into:
+
+
+\begin{equation*}
+\begin{aligned}
+&\frac{f^{3}}{xz^{4}}\left(-3\beta_{22}^{2}\eta_{x}+3\beta_{12}\beta_{22}\eta_{z}+3\beta_{22}\eta_{x}\eta_{z}-2\beta_{12}\eta_{z}^{2}-(1 + \beta_{22})\eta_{x}\eta_{z}^{2}+\beta_{12}\eta_{z}^{3}+\eta_{x}\eta_{z}^{3}\right) \\
+&=\frac{f^{3}}{xz^{4}}\left[(\eta_x\eta_z^3-\eta_x\eta_z^2)+\beta_{12}(\eta_z^3 - 2\eta_z^2)+3\beta_{12}\beta_{22}\eta_{z}+(-3\beta_{22}^2\eta_x) + \beta_{22}(3\eta_x\eta_z-\eta_x\eta_z^2)\right]<0
+\end{aligned}
+\end{equation*}
+It signifies that the $\frac{\partial z^*(q|x)}{\partial x}$ is concave with respect to q. Intuitively, $E_{q}[g(q)]$ will decrease with the increase of the variance of q for a concave function $g(q)$, and q is subject to a distribution with variance of $\sigma$, because the value of $g(q)$ increases faster at smaller values of q, and these values are allocated with more and more possibilities if $\sigma$ increases.\par
+In order to prove it rigorously, we can assume $q_{2} = q_{1}+\epsilon$, and $\epsilon$ is subject to a zero-mean distribution. $g(q_{2})=g(q_{1}+\epsilon)\leq g(q_{1})+g'(q_{1})\epsilon$ due to the concavity of $g(q)$. Take the expectations of both sides, we can get $E_{q_{2}}[g(q_{2}]\leq E_{q_{1}}[g(q_{1})]$. A brief proof ends.\par
+Therefore, $E\left[\frac{\partial z^*(q_0+\sigma\varepsilon|x)}{\partial x}\right]$ will decrease with the increase of $\sigma$. In order to maintain the existence of first-order condition (i.e., equation (\ref{eq: first-order condition})), another force of offsetting the effect of increasing $\sigma$ needs to appear. According to formula (\ref{xx}), $x$ will increase to make $E\left[\frac{\partial z^*(q_0+\sigma\varepsilon|x)}{\partial x}\right]$ increase, which achieves the balance. Consequently, the optimal input x will increase in demand uncertainty $\sigma$.
+
+\subsection*{\textit{Derivations for the effect of increased downside risk} (Omitted)}
+\newpage
+\section*{Reference}
+\bibliography{Ref}
+
+\end{document}
